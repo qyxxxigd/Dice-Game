@@ -55,7 +55,16 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
         // update the UI
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
-
+        
+        var input = document.querySelector('.final-score').value;
+        
+        // Undefined, 0, null, "" are coerced to False
+        // Others are coerced to true
+        if (input) {
+            winnerScore = input;
+        } else{
+            winnerScore = 100;
+        }
         // check IF player won the game
         if (scores[activePlayer] >= winningScore) {
             document.getElementById('name-' + activePlayer).textContent = 'Winner!'; 
@@ -82,7 +91,6 @@ function init(){
     lastScore = 0;
     activePlayer = 0;
     gamePlaying = true;
-    winningScore = prompt("please set the winning score: ");
 
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
